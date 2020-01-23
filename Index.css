@@ -1,0 +1,53 @@
+body {
+    box-sizing: border-box;
+}
+
+p {
+    background-color: rgb(255, 247, 172);
+    font-weight: normal; 
+    font-family: 'Arial';
+    font-size: 1em;
+    line-height: 1.3em;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 20px 70px 0px 70px;
+    margin: auto;
+    width: 400px;
+    height: 230px;
+}
+
+#s1 {
+    color: rgb(52, 223, 0);
+    font-size: 1.7em;
+    font-family: 'Arial';
+   
+}
+
+#s2 {
+    color: rgb(0, 0, 0);
+    font-size: 1.7em;
+    font-family: 'Arial';
+   
+}
+
+#s3 {
+    color: rgb(0, 102, 255);
+    font-size: 2em;
+    font-family: 'Arima Madurai', cursive;
+    line-height: 1.7em;
+}
+
+#s4 {
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    font-family: 'Arial';
+}
+
+#s5 {
+    color: rgb(0, 0, 0);
+    font-size: 0.7em;
+    font-family: 'Arial';
+    line-height: 4em;
+
+
+}
