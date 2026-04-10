@@ -2075,13 +2075,58 @@
         }
 
         @media (max-width: 768px) {
+            .req-track-wrap {
+                padding: 18px 14px 22px;
+            }
+
             .req-track-nodes {
-                min-width: 400px;
+                min-width: 0;
+                grid-template-columns: 1fr;
+                gap: 14px;
             }
 
             .req-track-bg-line,
             .req-track-fill {
-                min-width: 400px;
+                display: none;
+                min-width: 0;
+            }
+
+            .req-track-node {
+                display: grid;
+                grid-template-columns: 44px 1fr;
+                align-items: center;
+                justify-content: start;
+                gap: 12px;
+                text-align: left;
+                padding: 10px 12px;
+                border: 1px solid rgba(96, 165, 250, 0.14);
+                background: rgba(15, 23, 42, 0.42);
+            }
+
+            .req-node-ring {
+                display: none;
+            }
+
+            .req-node-circle {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+                grid-column: 1;
+                grid-row: 1 / span 2;
+            }
+
+            .req-node-num {
+                font-size: 0.72rem;
+            }
+
+            .req-node-label {
+                grid-column: 2;
+                white-space: normal;
+                font-size: 0.68rem;
+                line-height: 1.35;
+                letter-spacing: 1px;
+                transform: none;
             }
 
             .req-card {
@@ -2103,18 +2148,6 @@
 
             .req-watermark-num {
                 font-size: 5rem;
-            }
-
-            .req-track-wrap {
-                padding: 20px 16px 24px;
-            }
-
-            .req-node-label {
-                font-size: 0.55rem;
-            }
-
-            .req-track-fill.filled {
-                width: calc(75% - 32px);
             }
         }
 
@@ -3085,6 +3118,39 @@
             transform: rotate(90deg) !important;
         }
 
+
+        @media (max-width: 768px) {
+            .hero-meta {
+                width: 100% !important;
+                justify-content: flex-start !important;
+                align-items: center !important;
+                text-align: left !important;
+                margin-left: 0 !important;
+                margin-right: auto !important;
+            }
+
+            .hero-meta span,
+            .hero-meta div,
+            .hero-meta p {
+                text-align: left !important;
+            }
+        }
+
+        body.force-mobile .hero-meta {
+            width: 100% !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+
+        body.force-mobile .hero-meta span,
+        body.force-mobile .hero-meta div,
+        body.force-mobile .hero-meta p {
+            text-align: left !important;
+        }
+
         /* Overrides for SVGs and tables that had min-width and ruined the print proportions */
         body.force-mobile svg,
         body.force-mobile .eco-svg,
@@ -3153,43 +3219,56 @@
         }
 
         body.force-mobile .req-track-wrap {
-            padding: 20px 8px 24px !important;
+            padding: 18px 10px 20px !important;
             overflow: hidden !important;
         }
 
         body.force-mobile .req-track-nodes {
             min-width: 0 !important;
             width: 100% !important;
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
         }
 
         body.force-mobile .req-track-node {
             min-width: 0 !important;
+            display: grid !important;
+            grid-template-columns: 44px 1fr !important;
+            align-items: center !important;
+            justify-content: start !important;
+            gap: 12px !important;
+            text-align: left !important;
+            padding: 10px 12px !important;
+            border: 1px solid rgba(96, 165, 250, 0.14) !important;
+            background: rgba(15, 23, 42, 0.42) !important;
+        }
+
+        body.force-mobile .req-node-ring,
+        body.force-mobile .req-track-bg-line,
+        body.force-mobile .req-track-fill {
+            display: none !important;
+        }
+
+        body.force-mobile .req-node-circle {
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            min-height: 44px !important;
+            grid-column: 1 !important;
+            grid-row: 1 / span 2 !important;
+        }
+
+        body.force-mobile .req-node-num {
+            font-size: 0.72rem !important;
         }
 
         body.force-mobile .req-node-label {
-            font-size: 0.46rem !important;
-            letter-spacing: 0.8px !important;
-            white-space: nowrap !important;
-            transform: scale(0.92) !important;
-            transform-origin: center top !important;
-        }
-
-        body.force-mobile .req-track-bg-line {
-            left: calc(12.5% + 8px) !important;
-            right: calc(12.5% + 8px) !important;
-            min-width: 0 !important;
-            width: auto !important;
-        }
-
-        body.force-mobile .req-track-fill {
-            left: calc(12.5% + 8px) !important;
-            min-width: 0 !important;
-            max-width: calc(75% - 16px) !important;
-        }
-
-        body.force-mobile .req-track-fill.filled {
-            width: calc(75% - 16px) !important;
+            grid-column: 2 !important;
+            font-size: 0.68rem !important;
+            line-height: 1.35 !important;
+            letter-spacing: 1px !important;
+            white-space: normal !important;
+            transform: none !important;
         }
 
         body.force-mobile .req-progress-fill {
