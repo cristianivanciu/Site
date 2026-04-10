@@ -384,6 +384,25 @@
             margin-bottom: clamp(60px, 10vw, 150px);
         }
 
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('Midea MBT business plan 2030(english)1_Page_01.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(90deg, rgba(10, 12, 16, 1) 0%, rgba(10, 12, 16, 0.6) 50%, rgba(10, 12, 16, 0.3) 100%);
+        }
+
         .hero-section::before {
             content: "";
             position: absolute;
@@ -392,6 +411,32 @@
             background-size: 40px 40px;
             animation: hero-grid-pulse 8s ease-in-out infinite;
             pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes hero-grid-pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(900px, 120vw);
+            height: min(900px, 120vw);
+            background: radial-gradient(ellipse at center, rgba(96, 165, 250, 0.08) 0%, rgba(96, 165, 250, 0.03) 40%, transparent 70%);
+            animation: hero-glow-breathe 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 2;
         }
 
         @keyframes hero-grid-pulse {
@@ -614,12 +659,92 @@
             animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.65s both;
         }
 
+        .hero-kpis {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+            animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s both;
+        }
+
+        .hero-kpi-card {
+            border: 1px solid var(--cad-slate);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 20px 28px;
+            position: relative;
+            min-width: 180px;
+        }
+
+        .hero-kpi-card::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 8px;
+            height: 8px;
+            border-top: 1px solid var(--accent);
+            border-left: 1px solid var(--accent);
+        }
+
+        .hero-kpi-card::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            width: 8px;
+            height: 8px;
+            border-bottom: 1px solid var(--accent);
+            border-right: 1px solid var(--accent);
+        }
+
+        .hero-kpi-card.hero-kpi-target {
+            border-color: var(--accent);
+            background: rgba(96, 165, 250, 0.06);
+        }
+
+        .hero-kpi-card.hero-kpi-target::before,
+        .hero-kpi-card.hero-kpi-target::after {
+            width: 10px;
+            height: 10px;
+            border-width: 2px;
+        }
+
+        .hero-kpi-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 700;
+            margin-top: 6px;
+            color: var(--text-main);
+        }
+
+        .hero-kpi-value.accent {
+            color: var(--accent);
+        }
+
+        .hero-kpi-multiplier {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: var(--accent);
+            opacity: 0.8;
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        .hero-arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+
         .hero-readout {
             display: flex;
             align-items: center;
             gap: 16px;
             flex-wrap: wrap;
-            margin-top: 48px;
+            margin-top: 32px;
             padding: 12px 0;
             border-top: 1px solid rgba(96, 165, 250, 0.12);
             animation: fade-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 1.0s both;
@@ -659,12 +784,32 @@
                 font-size: clamp(6rem, 35vw, 12rem);
             }
 
+            .hero-kpis {
+                gap: 14px;
+            }
+
+            .hero-kpi-card {
+                min-width: 140px;
+                padding: 14px 18px;
+            }
+
             .hero-readout {
                 gap: 10px;
             }
 
             .hero-readout-sep {
                 display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-kpis {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-arrow {
+                transform: rotate(90deg);
             }
         }
 
@@ -916,7 +1061,7 @@
         }
 
         .kpi-card-index {
-            position: absolute;
+            absolute;
             top: 14px;
             left: 16px;
             font-family: 'JetBrains Mono', monospace;
@@ -1059,17 +1204,6 @@
 
         .kpi-c3.visible {
             transition-delay: 0.31s;
-        }
-
-        @media (max-width: 768px) {
-            .kpi-ring-grid-v2 {
-                grid-template-columns: 1fr;
-            }
-
-            .kpi-ring-card-v2:not(:last-child) {
-                border-right: none;
-                border-bottom: 1px solid rgba(96, 165, 250, 0.1);
-            }
         }
 
         /* ── DOMINANCE DONUT ── */
@@ -1358,6 +1492,14 @@
             .eco-svg-mobile {
                 display: block;
             }
+        }
+
+        body.force-mobile .eco-svg-desktop {
+            display: none !important;
+        }
+
+        body.force-mobile .eco-svg-mobile {
+            display: block !important;
         }
 
         /* ── SCALE GAUGES ── */
@@ -2374,10 +2516,9 @@
 
         /* ── STRUCTURAL PATH ── */
         .sp-layout {
-            display: grid;
-            grid-template-columns: 1fr 300px;
+            display: flex;
+            flex-direction: column;
             gap: 28px;
-            align-items: start;
             min-width: 0;
             width: 100%;
             max-width: 100%;
@@ -2385,7 +2526,7 @@
 
         .sp-chart-panel {
             padding: 24px;
-            min-height: 250px;
+            min-height: 380px;
             display: flex;
             flex-direction: column;
             min-width: 0;
@@ -2396,9 +2537,9 @@
         }
 
         .sp-panels {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
         .sp-data-panel {
@@ -2453,11 +2594,15 @@
         }
 
         .sp-dot-rac {
-            background: rgba(96, 165, 250, 0.5);
+            background: #94a3b8;
+        }
+
+        .sp-dot-cli {
+            background: #93c5fd;
         }
 
         .sp-dot-krm {
-            background: rgba(96, 165, 250, 0.25);
+            background: #3b82f6;
         }
 
         .sp-stream-name {
@@ -2475,31 +2620,8 @@
         }
 
         @media (max-width: 900px) {
-            .sp-layout {
+            .sp-panels {
                 grid-template-columns: 1fr;
-            }
-
-            .sp-panels {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .sp-data-panel {
-                flex: 1;
-                min-width: 220px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .sp-panels {
-                flex-direction: column;
-                flex-wrap: nowrap;
-            }
-
-            .sp-data-panel {
-                width: 100%;
-                min-width: 100%;
-                box-sizing: border-box;
             }
 
             .sp-chart-panel {
@@ -2891,8 +3013,10 @@
         }
 
         body.force-mobile .sp-panels {
+            display: flex !important;
             flex-direction: column !important;
             flex-wrap: nowrap !important;
+            gap: 24px !important;
         }
 
         body.force-mobile .cad-panel {
@@ -3016,6 +3140,18 @@
             transform: scaleX(1) !important;
         }
 
+        /* ── SVG MOUNTAIN CHART PDF OVERRIDES ── */
+        body.force-mobile .bpm-layer,
+        body.pdf-export .bpm-layer {
+            transform: scaleY(1) !important;
+        }
+
+        body.force-mobile .bpm-callout,
+        body.pdf-export .bpm-callout {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
         /* ── ECOSYSTEM DIAGRAM (DUAL VERSION) ── */
         .eco-diagram-wrap {
             width: 100%;
@@ -3023,10 +3159,58 @@
             position: relative;
         }
 
-        .eco-svg {
+        /* ── BLUEPRINT MOUNTAIN CHART (SECTION 7 CUSTOM SVG) ── */
+        .bpm-wrap {
+            width: 100%;
+            position: relative;
+            padding: 20px 0;
+            overflow: visible;
+        }
+
+        .bpm-svg {
             width: 100%;
             height: auto;
+            display: block;
             overflow: visible;
+        }
+
+        .bpm-layer {
+            transform-origin: 50% 480px;
+            /* Base for scale up */
+            transform: scaleY(0);
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .sp-chart-panel.visible .bpm-layer {
+            transform: scaleY(1);
+        }
+
+        .bpm-layer:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .bpm-layer:nth-child(2) {
+            transition-delay: 0.3s;
+        }
+
+        .bpm-layer:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
+        .bpm-layer:nth-child(4) {
+            transition-delay: 0.7s;
+        }
+
+        .bpm-callout {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .sp-chart-panel.visible .bpm-callout {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 1.2s;
         }
 
         .eco-svg-desktop {
@@ -3223,6 +3407,8 @@
 
     <!-- ══ HERO ════════════════════════════════════════════════════ -->
     <section class="hero-section" aria-label="Hero banner">
+        <div class="hero-bg-image" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-scan" aria-hidden="true"></div>
         <div class="hero-watermark" aria-hidden="true">$90M</div>
@@ -4186,16 +4372,174 @@
             </div>
 
             <div class="sp-layout">
-                <div class="cad-panel chart-canvas-panel sp-chart-panel">
-                    <div class="cad-label" style="margin-bottom:20px;">GROUP_COMPOSITION_BY_REVENUE_STREAM</div>
-                    <div class="chart-canvas-wrapper" style="position:relative; width: 100%; height: 260px;">
-                        <canvas id="structuralPathChart"></canvas>
+                <div class="cad-panel sp-chart-panel"
+                    style="padding: 10px; background: rgba(10, 15, 26, 0.6); border: 1px solid rgba(96,165,250,0.3);">
+                    <!-- CUSTOM SVG BLUEPRINT MOUNTAIN CHART -->
+                    <div class="bpm-wrap">
+                        <svg class="bpm-svg" viewBox="-50 0 1150 550" xmlns="http://www.w3.org/2000/svg"
+                            aria-label="Structural Path Mountain Chart">
+                            <defs>
+                                <linearGradient id="grad-krm" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#0e7490" />
+                                    <stop offset="100%" stop-color="#164e63" />
+                                </linearGradient>
+                                <linearGradient id="grad-cli" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="100%" stop-color="#1e3a8a" />
+                                </linearGradient>
+                                <linearGradient id="grad-rac" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#94a3b8" />
+                                    <stop offset="100%" stop-color="#475569" />
+                                </linearGradient>
+                                <linearGradient id="grad-mbt" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#0ea5e9" />
+                                    <stop offset="100%" stop-color="#0369a1" />
+                                </linearGradient>
+                                <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="4" result="blur" />
+                                    <feMerge>
+                                        <feMergeNode in="blur" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                                <!-- Grid pattern -->
+                                <pattern id="bpm-grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                                    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(96,165,250,0.1)"
+                                        stroke-width="1" />
+                                </pattern>
+                            </defs>
+
+                            <!-- BG -->
+                            <rect x="-50" y="0" width="1150" height="550" fill="url(#bpm-grid)" />
+
+                            <!-- Axes -->
+                            <path d="M 50,480 L 1050,480" fill="none" stroke="#60a5fa" stroke-width="2" />
+                            <path d="M 100,500 L 100,50" fill="none" stroke="#60a5fa" stroke-width="2" />
+                            <polygon points="1050,480 1040,475 1040,485" fill="#60a5fa" />
+                            <polygon points="100,50 95,60 105,60" fill="#60a5fa" />
+
+                            <!-- Layers -->
+                            <g class="bpm-layer">
+                                <!-- Kermi -->
+                                <polygon points="250,480 500,480 800,480 800,440 500,440 250,450" fill="url(#grad-krm)"
+                                    stroke="#22d3ee" stroke-width="1" />
+                                <polyline points="250,450 500,440 800,440" fill="none" stroke="#67e8f9" stroke-width="3"
+                                    filter="url(#glow-cyan)" />
+                            </g>
+
+                            <g class="bpm-layer">
+                                <!-- Clivet -->
+                                <polygon points="250,450 500,440 800,440 800,390 500,410 250,450" fill="url(#grad-cli)"
+                                    stroke="#60a5fa" stroke-width="1" />
+                                <polyline points="250,450 500,410 800,390" fill="none" stroke="#93c5fd" stroke-width="3"
+                                    filter="url(#glow-cyan)" />
+                            </g>
+
+                            <g class="bpm-layer">
+                                <!-- RAC -->
+                                <polygon points="250,450 500,410 800,390 800,330 500,350 250,390" fill="url(#grad-rac)"
+                                    stroke="#cbd5e1" stroke-width="1" />
+                                <polyline points="250,390 500,350 800,330" fill="none" stroke="#f1f5f9" stroke-width="3"
+                                    filter="url(#glow-cyan)" />
+                            </g>
+
+                            <g class="bpm-layer">
+                                <!-- MBT -->
+                                <polygon points="250,390 500,350 800,330 800,100 500,220 250,330" fill="url(#grad-mbt)"
+                                    stroke="#38bdf8" stroke-width="1" />
+                                <polyline points="250,330 500,220 800,100" fill="none" stroke="#7dd3fc" stroke-width="4"
+                                    filter="url(#glow-cyan)" />
+                            </g>
+
+                            <!-- Architectural Pillars -->
+                            <g class="bpm-layer" style="transition-delay: 1s;">
+                                <!-- 2025 Pillar -->
+                                <rect x="235" y="310" width="30" height="170" fill="#1e293b" stroke="#38bdf8"
+                                    stroke-width="2" />
+                                <rect x="235" y="320" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="235" y="380" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="235" y="440" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+
+                                <!-- 2026 Pillar -->
+                                <rect x="485" y="200" width="30" height="280" fill="#1e293b" stroke="#38bdf8"
+                                    stroke-width="2" />
+                                <rect x="485" y="210" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="485" y="340" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="485" y="400" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+
+                                <!-- Cross Bracing 2025-2026 -->
+                                <line x1="265" y1="440" x2="485" y2="400" stroke="#475569" stroke-width="4" />
+                                <line x1="265" y1="400" x2="485" y2="440" stroke="#475569" stroke-width="4" />
+
+                                <!-- 2030 Pillar -->
+                                <rect x="785" y="80" width="30" height="400" fill="#1e293b" stroke="#38bdf8"
+                                    stroke-width="2" />
+                                <rect x="785" y="90" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="785" y="320" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="785" y="380" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+                                <rect x="785" y="430" width="30" height="8" fill="#38bdf8" filter="url(#glow-cyan)" />
+
+                                <!-- Cross Bracing 2026-2030 -->
+                                <line x1="515" y1="400" x2="785" y2="380" stroke="#475569" stroke-width="4" />
+                                <line x1="515" y1="380" x2="785" y2="400" stroke="#475569" stroke-width="4" />
+                            </g>
+
+                            <!-- Callouts and Text -->
+                            <g class="bpm-callout">
+                                <!-- Total Group 29.9M -->
+                                <polyline points="100,320 220,320 235,335" fill="none" stroke="#f1f5f9"
+                                    stroke-width="2" />
+                                <text x="210" y="312" fill="#f1f5f9" font-family="Outfit" font-size="22"
+                                    font-weight="600" text-anchor="end">Total Group: $29.9M</text>
+
+                                <!-- 2026 Spike -->
+                                <polyline points="450,150 490,150 500,200" fill="none" stroke="#f87171"
+                                    stroke-width="2" />
+                                <circle cx="500" cy="200" r="4" fill="#f87171" />
+                                <text x="440" y="145" fill="#f87171" font-family="Outfit" font-size="26"
+                                    font-weight="800" text-anchor="end">2026 Big growth: $38.4M MBT</text>
+                                <text x="440" y="165" fill="#e2e8f0" font-family="Inter" font-size="14"
+                                    text-anchor="end">Features a temporary 145% structural spike, specifically</text>
+                                <text x="440" y="185" fill="#e2e8f0" font-family="Inter" font-size="14"
+                                    text-anchor="end">absorbing postponed deliveries from late 2025.</text>
+
+                                <!-- 2030 Totals -->
+                                <polyline points="815,100 840,100" fill="none" stroke="#f1f5f9" stroke-width="2" />
+                                <text x="850" y="106" fill="#f1f5f9" font-family="Outfit" font-size="22"
+                                    font-weight="600" text-anchor="start">Total Group: $90.0M</text>
+
+                                <polyline points="815,170 840,170" fill="none" stroke="#38bdf8" stroke-width="2" />
+                                <text x="850" y="176" fill="#f1f5f9" font-family="Outfit" font-size="22"
+                                    font-weight="600" text-anchor="start">Midea MBT: $65.5M</text>
+
+                                <!-- Side Labels -->
+                                <line x1="815" y1="325" x2="840" y2="325" stroke="#cbd5e1" stroke-width="2" />
+                                <text x="850" y="331" fill="#f1f5f9" font-family="Outfit" font-size="20"
+                                    font-weight="700" text-anchor="start">RAC</text>
+
+                                <line x1="815" y1="385" x2="840" y2="385" stroke="#93c5fd" stroke-width="2" />
+                                <text x="850" y="391" fill="#f1f5f9" font-family="Outfit" font-size="20"
+                                    font-weight="700" text-anchor="start">Clivet</text>
+
+                                <line x1="815" y1="435" x2="840" y2="435" stroke="#22d3ee" stroke-width="2" />
+                                <text x="850" y="441" fill="#f1f5f9" font-family="Outfit" font-size="20"
+                                    font-weight="700" text-anchor="start">Kermi</text>
+
+                                <!-- Years at bottom -->
+                                <text x="250" y="520" fill="#60a5fa" font-family="Outfit" font-size="26"
+                                    font-weight="800" text-anchor="middle">2025</text>
+                                <text x="500" y="520" fill="#60a5fa" font-family="Outfit" font-size="26"
+                                    font-weight="800" text-anchor="middle">2026</text>
+                                <text x="800" y="520" fill="#60a5fa" font-family="Outfit" font-size="26"
+                                    font-weight="800" text-anchor="middle">2030</text>
+                            </g>
+                        </svg>
                     </div>
                 </div>
 
                 <div class="sp-panels">
                     <div class="cad-panel sp-data-panel">
-                        <div class="cad-label">2025 ACTUAL — TOTAL GROUP</div>
+                        <div class="cad-label">2025 ACTUAL</div>
                         <div class="sp-year-total">$29.9M</div>
                         <div class="sp-breakdown">
                             <div class="sp-row">
@@ -4216,24 +4560,40 @@
                         </div>
                     </div>
 
+                    <div class="cad-panel sp-data-panel"
+                        style="border-color: rgba(248,113,113,0.4); background: rgba(248,113,113,0.05);">
+                        <div class="cad-label" style="color: #f87171;">2026 BIG GROWTH</div>
+                        <div class="sp-year-total" style="color: #f87171;">$38.4M <span
+                                style="font-size:1rem;color:var(--text-dim);">MBT</span></div>
+                        <p style="font-size:0.8rem; line-height:1.6; color:var(--text-dim); margin-top:8px;">
+                            Features a temporary 145% structural spike, specifically absorbing postponed deliveries from
+                            late 2025.
+                        </p>
+                    </div>
+
                     <div class="cad-panel sp-data-panel sp-data-target">
-                        <div class="cad-label">2030 TARGET — TOTAL GROUP</div>
-                        <div class="sp-year-total sp-total-accent">$90.3M</div>
+                        <div class="cad-label">2030 TARGET</div>
+                        <div class="sp-year-total sp-total-accent">$90.0M</div>
                         <div class="sp-breakdown">
                             <div class="sp-row">
                                 <span class="sp-dot sp-dot-mbt"></span>
                                 <span class="sp-stream-name">Midea MBT</span>
-                                <span class="sp-stream-val sp-val-accent">$55.7M</span>
+                                <span class="sp-stream-val sp-val-accent">$65.5M</span>
                             </div>
                             <div class="sp-row">
                                 <span class="sp-dot sp-dot-rac"></span>
                                 <span class="sp-stream-name">Midea RAC</span>
-                                <span class="sp-stream-val">$20.0M</span>
+                                <span class="sp-stream-val">$12.0M</span>
+                            </div>
+                            <div class="sp-row">
+                                <span class="sp-dot sp-dot-cli"></span>
+                                <span class="sp-stream-name">Clivet</span>
+                                <span class="sp-stream-val">$8.0M</span>
                             </div>
                             <div class="sp-row">
                                 <span class="sp-dot sp-dot-krm"></span>
                                 <span class="sp-stream-name">Kermi</span>
-                                <span class="sp-stream-val">$14.6M</span>
+                                <span class="sp-stream-val">$4.5M</span>
                             </div>
                         </div>
                     </div>
@@ -4895,43 +5255,12 @@
                 });
             })();
 
-            /* ── Structural Path chart ──────────────────────────────────── */
-            (function () {
-                var ctx2 = document.getElementById('structuralPathChart')?.getContext('2d');
-                if (!ctx2) return;
-                new Chart(ctx2, {
-                    type: 'bar',
-                    data: {
-                        labels: ['2025 (Actual)', '2030 (Target)'],
-                        datasets: [
-                            { label: 'Midea MBT', data: [10.7, 55.7], backgroundColor: '#60a5fa', borderWidth: 0 },
-                            { label: 'Midea RAC', data: [14.9, 20.0], backgroundColor: 'rgba(96,165,250,0.4)', borderWidth: 0 },
-                            { label: 'Kermi', data: [4.3, 14.6], backgroundColor: 'rgba(96,165,250,0.18)', borderWidth: 0 }
-                        ]
-                    },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        animation: { duration: 1600, easing: 'easeInOutCubic' },
-                        scales: {
-                            x: { stacked: true, grid: { color: 'rgba(255,255,255,0.03)', drawBorder: false }, ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 } }, border: { display: false } },
-                            y: { stacked: true, beginAtZero: true, grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false }, ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, callback: function (v) { return '$' + v + 'M'; } }, border: { display: false } }
-                        },
-                        plugins: {
-                            legend: { display: true, labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 }, boxWidth: 10, padding: 16 } },
-                            tooltip: {
-                                mode: 'index', backgroundColor: '#0f172a', borderColor: 'rgba(96,165,250,0.25)', borderWidth: 1, titleColor: '#60a5fa', titleFont: { family: 'JetBrains Mono', size: 11 }, bodyFont: { family: 'JetBrains Mono', size: 11 }, bodyColor: '#94a3b8', padding: 12,
-                                callbacks: { label: function (ctx) { return '  ' + ctx.dataset.label + ': $' + ctx.raw + 'M'; } }
-                            }
-                        }
-                    }
-                });
-            })();
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('visible'); /* Aceasta clasa este vitala pt declansarea animatiilor SVG */
                     }
                 });
             }, { threshold: 0.08 });
@@ -5000,8 +5329,6 @@
                                 document.documentElement.classList.remove('force-mobile-pdf');
                                 document.body.classList.remove('pdf-export');
                                 document.body.classList.remove('force-mobile');
-
-                                wrappers.forEach(function (w) { w.style.maxWidth = '100%'; });
                                 var styleToRemove = document.getElementById('dynamic-print-size');
                                 if (styleToRemove) styleToRemove.remove();
 
