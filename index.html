@@ -976,6 +976,26 @@
             overflow: hidden;
         }
 
+        @media (max-width: 767px) {
+            .kpi-ring-grid-v2 {
+                display: flex !important;
+                flex-direction: column !important;
+                grid-template-columns: 1fr !important;
+                gap: 0 !important;
+            }
+
+            .kpi-ring-grid-v2 > .kpi-ring-card-v2 {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex: 0 0 auto !important;
+            }
+
+            .kpi-ring-grid-v2 > .kpi-ring-card-v2:not(:last-child) {
+                border-right: none !important;
+                border-bottom: 1px solid rgba(96, 165, 250, 0.1) !important;
+            }
+        }
+
         .kpi-ring-grid-v2::after {
             content: "";
             position: absolute;
@@ -3132,8 +3152,44 @@
             stroke-dashoffset: 0 !important;
         }
 
+        body.force-mobile .req-track-wrap {
+            padding: 20px 8px 24px !important;
+            overflow: hidden !important;
+        }
+
+        body.force-mobile .req-track-nodes {
+            min-width: 0 !important;
+            width: 100% !important;
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        }
+
+        body.force-mobile .req-track-node {
+            min-width: 0 !important;
+        }
+
+        body.force-mobile .req-node-label {
+            font-size: 0.46rem !important;
+            letter-spacing: 0.8px !important;
+            white-space: nowrap !important;
+            transform: scale(0.92) !important;
+            transform-origin: center top !important;
+        }
+
+        body.force-mobile .req-track-bg-line {
+            left: calc(12.5% + 8px) !important;
+            right: calc(12.5% + 8px) !important;
+            min-width: 0 !important;
+            width: auto !important;
+        }
+
         body.force-mobile .req-track-fill {
-            width: calc(75% - 80px) !important;
+            left: calc(12.5% + 8px) !important;
+            min-width: 0 !important;
+            max-width: calc(75% - 16px) !important;
+        }
+
+        body.force-mobile .req-track-fill.filled {
+            width: calc(75% - 16px) !important;
         }
 
         body.force-mobile .req-progress-fill {
@@ -3630,7 +3686,8 @@
                         </div>
                         <h3 class="vp-title">Massive<br>Trajectory</h3>
                         <p class="vp-desc">Scaling group turnover from <strong>$22M</strong> in 2024 to
-                            <strong>$90M</strong> by 2030 through aggressive market penetration.</p>
+                            <strong>$90M</strong> by 2030 through aggressive market penetration.
+                        </p>
                         <div class="vp-kpi">
                             <span class="vp-kpi-val">×4.1</span>
                             <span class="vp-kpi-lbl">growth multiplier</span>
@@ -3649,7 +3706,8 @@
                         </div>
                         <h3 class="vp-title">Regional<br>Dominance</h3>
                         <p class="vp-desc">Leveraging <strong>Romania</strong> as the primary structural engine across
-                            <strong>Eastern Europe</strong>.</p>
+                            <strong>Eastern Europe</strong>.
+                        </p>
                         <div class="vp-kpi">
                             <span class="vp-kpi-val">7</span>
                             <span class="vp-kpi-lbl">active markets</span>
@@ -3668,7 +3726,8 @@
                         </div>
                         <h3 class="vp-title">Infrastructure<br>Expansion</h3>
                         <p class="vp-desc">Securing the physical logistics and operational capacity to sustain
-                            <strong>exponential volume</strong>.</p>
+                            <strong>exponential volume</strong>.
+                        </p>
                         <div class="vp-kpi">
                             <span class="vp-kpi-val">$1M</span>
                             <span class="vp-kpi-lbl">facility investment</span>
@@ -5021,7 +5080,8 @@
                     <div class="req-card-divider"></div>
                     <div class="req-card-right">
                         <p class="req-text">Availability to actively distribute <strong>Clivet</strong>,
-                            <strong>Kermi</strong>, and <strong>Arbonia</strong> brands across all group countries.</p>
+                            <strong>Kermi</strong>, and <strong>Arbonia</strong> brands across all group countries.
+                        </p>
                         <div class="req-progress-row">
                             <div class="req-progress-bar">
                                 <div class="req-progress-fill" style="width:65%;background:rgba(96,165,250,0.55);">
